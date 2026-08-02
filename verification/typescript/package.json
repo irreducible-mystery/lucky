@@ -1,0 +1,12 @@
+{
+  "name": "lucky-field-typecheck",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Type-level verification: field records must inhabit the grammar encoded as TypeScript types.",
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
