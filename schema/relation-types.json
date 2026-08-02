@@ -1,0 +1,25 @@
+{
+  "$comment": "The relation vocabulary of the field, v0.1.0. Adding or removing a type is an L3 change. Origin: founding design document, section 5 (archive/founding-design.md).",
+  "relation_types": [
+    "supports",
+    "challenges",
+    "contradicts_under",
+    "compatible_under",
+    "complements",
+    "overlaps",
+    "contains",
+    "depends_on",
+    "caused_by",
+    "correlated_with",
+    "translates_to",
+    "partially_translates_to",
+    "loses_information_when_translated_to",
+    "applies_at_different_scale",
+    "applies_at_different_time",
+    "transforms_into",
+    "provides_counterexample_to",
+    "shares_assumption_with",
+    "requires_dimension",
+    "unresolved_with"
+  ]
+}

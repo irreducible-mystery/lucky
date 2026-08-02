@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/irreducible-mystery/lucky/schema/contribution.schema.json",
+  "title": "Field contribution record (front matter)",
+  "description": "The grammar of the field, v0.1.0. Changing this file is an L3 change (see GOVERNANCE.md). The 'verification' property was introduced by dimension-2026-0001 in the founding PR.",
+  "type": "object",
+  "required": ["id", "kind", "status", "participant", "created"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(perspective|observation|claim|assumption|definition|relation|tension|bridge|experiment|dimension|synthesis|limit|transformation|objection)-[0-9]{4}-[0-9]{4}$"
+    },
+    "kind": {
+      "enum": [
+        "perspective", "observation", "claim", "assumption", "definition",
+        "relation", "tension", "bridge", "experiment", "dimension-proposal",
+        "synthesis", "limit", "transformation", "objection"
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "asserted",
+        "participant-confirmed",
+        "unconfirmed-interpretation",
+        "interpretation-rejected",
+        "contested",
+        "open",
+        "provisionally-integrated",
+        "superseded"
+      ]
+    },
+    "created": { "type": "string", "format": "date" },
+    "participant": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "enum": ["human", "ai", "collective"] },
+        "pseudonym": { "type": "string" },
+        "github_handle": { "type": "string" },
+        "attribution": { "enum": ["named", "pseudonymous", "abstracted"] },
+        "system": { "type": "string" },
+        "model_family": { "type": "string" },
+        "agent_version": { "type": "string" },
+        "prompt_version": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "ai" } } },
+          "then": { "required": ["system", "model_family", "agent_version"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "human" } } },
+          "then": { "required": ["attribution"] }
+        }
+      ]
+    },
+    "statement": { "type": "string" },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scale": { "type": "array", "items": { "type": "string" } },
+        "temporal_scope": { "type": "string" },
+        "ontology": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "type": {
+      "description": "For kind=relation: the edge type. Must be in schema/relation-types.json.",
+      "type": "string"
+    },
+    "source": { "type": "string" },
+    "target": { "type": "string" },
+    "conditions": { "type": "object" },
+    "tension_type": {
+      "enum": [
+        "logical-contradiction", "equivocation", "scale-mismatch",
+        "temporal-mismatch", "ontological-mismatch", "measurement-disagreement",
+        "false-dichotomy", "self-reference", "undecidability",
+        "uncomputability", "irreducible-value-conflict", "artifact-loss",
+        "bootstrap-paradox"
+      ]
+    },
+    "between": { "type": "array", "items": { "type": "string" } },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "distinctions": { "type": "array", "items": { "type": "string" } },
+    "unresolved_questions": { "type": "array", "items": { "type": "string" } },
+    "reopen_conditions": { "type": "array", "items": { "type": "string" } },
+    "endorsed_by": { "type": "array", "items": { "type": "string" } },
+    "objected_to_by": { "type": "array", "items": { "type": "string" } },
+    "name": { "type": "string" },
+    "reason": { "type": "string" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_type": {
+          "enum": [
+            "conversation", "github-discussion", "github-issue",
+            "github-pull-request", "document", "extraction", "tool-run",
+            "self"
+          ]
+        },
+        "source_id": { "type": "string" },
+        "description": { "type": "string" },
+        "captured_at": { "type": "string", "format": "date" }
+      },
+      "required": ["source_type", "captured_at"]
+    },
+    "ai_assistance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "used": { "type": "boolean" },
+        "agents": { "type": "array", "items": { "type": "string" } },
+        "participant_confirmed_interpretation": { "type": "boolean" }
+      },
+      "required": ["used"]
+    },
+    "confirmation": {
+      "type": "object",
+      "description": "Required when status is participant-confirmed.",
+      "additionalProperties": false,
+      "required": ["confirmed_by", "confirmed_at", "via"],
+      "properties": {
+        "confirmed_by": { "type": "string" },
+        "confirmed_at": { "type": "string", "format": "date" },
+        "via": { "type": "string" }
+      }
+    },
+    "independence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model_family_shared_with": { "type": "array", "items": { "type": "string" } },
+        "shared_retrieval_source": { "type": "boolean" },
+        "shared_prompt_ancestor": { "type": "string" }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "description": "Introduced by dimension-2026-0001: how, if at all, this record's structural content is machine-checked.",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": ["unverified", "checked-python", "checked-types", "checked-numeric", "proven-lean"]
+        },
+        "artifacts": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["status"]
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "relation" } } },
+      "then": { "required": ["type", "source", "target"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "tension" } } },
+      "then": { "required": ["tension_type", "between"] }
+    },
+    {
+      "if": { "properties": { "status": { "const": "participant-confirmed" } } },
+      "then": { "required": ["confirmation"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "dimension-proposal" } } },
+      "then": { "required": ["name", "reason"] }
+    }
+  ]
+}

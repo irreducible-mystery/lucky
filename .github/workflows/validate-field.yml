@@ -1,0 +1,77 @@
+name: Validate field change
+
+on:
+  pull_request:
+    paths:
+      - "field/**"
+      - "schema/**"
+      - "verification/**"
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyyaml jsonschema
+      - name: Validate records against the grammar
+        run: python verification/python/validate_records.py
+      - name: Build graph projection
+        run: python verification/python/build_graph.py
+      - name: Upload generated projections
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-projections
+          path: generated/
+
+  verify-types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Generate TS record literals from field
+        run: |
+          pip install pyyaml
+          python verification/python/emit_typescript_records.py
+      - name: Records must inhabit the types
+        run: |
+          cd verification/typescript
+          npm install --no-audit --no-fund
+          npx tsc --noEmit
+
+  verify-numeric:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: "1.10"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyyaml jsonschema
+      - run: python verification/python/build_graph.py
+      - name: Graph invariants
+        run: julia verification/julia/graph_invariants.jl
+
+  verify-lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -fsSL https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.9.0
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+      - name: Check formal grammar and seed-field theorems
+        run: |
+          cd verification/lean
+          lake build

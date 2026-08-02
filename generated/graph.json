@@ -1,0 +1,268 @@
+{
+  "generated_at": "2026-08-02",
+  "canonical": false,
+  "note": "Projection of field/. Regenerate; never edit.",
+  "nodes": [
+    {
+      "id": "assumption-2026-0001",
+      "kind": "assumption",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "assumption-2026-0002",
+      "kind": "assumption",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "assumption-2026-0003",
+      "kind": "assumption",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "proven-lean"
+    },
+    {
+      "id": "claim-2026-0001",
+      "kind": "claim",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "claim-2026-0002",
+      "kind": "claim",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "proven-lean"
+    },
+    {
+      "id": "claim-2026-0003",
+      "kind": "claim",
+      "status": "participant-confirmed",
+      "participant_type": "human",
+      "verification": "checked-python"
+    },
+    {
+      "id": "dimension-2026-0001",
+      "kind": "dimension-proposal",
+      "status": "provisionally-integrated",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "limit-2026-0001",
+      "kind": "limit",
+      "status": "open",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "observation-2026-0001",
+      "kind": "observation",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "observation-2026-0002",
+      "kind": "observation",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "observation-2026-0003",
+      "kind": "observation",
+      "status": "participant-confirmed",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "observation-2026-0004",
+      "kind": "observation",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "perspective-2026-0001",
+      "kind": "perspective",
+      "status": "asserted",
+      "participant_type": "human",
+      "verification": "checked-python"
+    },
+    {
+      "id": "perspective-2026-0002",
+      "kind": "perspective",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "perspective-2026-0003",
+      "kind": "perspective",
+      "status": "asserted",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "tension-2026-0001",
+      "kind": "tension",
+      "status": "open",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "tension-2026-0002",
+      "kind": "tension",
+      "status": "open",
+      "participant_type": "ai",
+      "verification": "proven-lean"
+    },
+    {
+      "id": "tension-2026-0003",
+      "kind": "tension",
+      "status": "open",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "tension-2026-0004",
+      "kind": "tension",
+      "status": "open",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    }
+  ],
+  "edges": [
+    {
+      "id": "claim-2026-0001::assumes::assumption-2026-0001",
+      "type": "depends_on",
+      "source": "claim-2026-0001",
+      "target": "assumption-2026-0001",
+      "status": "implicit"
+    },
+    {
+      "id": "claim-2026-0001::assumes::assumption-2026-0002",
+      "type": "depends_on",
+      "source": "claim-2026-0001",
+      "target": "assumption-2026-0002",
+      "status": "implicit"
+    },
+    {
+      "id": "claim-2026-0002::assumes::assumption-2026-0003",
+      "type": "depends_on",
+      "source": "claim-2026-0002",
+      "target": "assumption-2026-0003",
+      "status": "implicit"
+    },
+    {
+      "id": "relation-2026-0001",
+      "type": "depends_on",
+      "source": "claim-2026-0001",
+      "target": "assumption-2026-0001",
+      "status": "asserted"
+    },
+    {
+      "id": "relation-2026-0002",
+      "type": "depends_on",
+      "source": "claim-2026-0001",
+      "target": "assumption-2026-0002",
+      "status": "asserted"
+    },
+    {
+      "id": "relation-2026-0003",
+      "type": "provides_counterexample_to",
+      "source": "tension-2026-0001",
+      "target": "claim-2026-0001",
+      "status": "asserted"
+    },
+    {
+      "id": "relation-2026-0004",
+      "type": "requires_dimension",
+      "source": "claim-2026-0003",
+      "target": "dimension-2026-0001",
+      "status": "asserted"
+    },
+    {
+      "id": "relation-2026-0005",
+      "type": "unresolved_with",
+      "source": "observation-2026-0003",
+      "target": "observation-2026-0001",
+      "status": "asserted"
+    },
+    {
+      "id": "relation-2026-0006",
+      "type": "supports",
+      "source": "claim-2026-0003",
+      "target": "claim-2026-0002",
+      "status": "asserted"
+    },
+    {
+      "id": "relation-2026-0007",
+      "type": "applies_at_different_time",
+      "source": "observation-2026-0004",
+      "target": "limit-2026-0001",
+      "status": "asserted"
+    },
+    {
+      "id": "tension-2026-0001::between::claim-2026-0001",
+      "type": "unresolved_with",
+      "source": "tension-2026-0001",
+      "target": "claim-2026-0001",
+      "status": "implicit"
+    },
+    {
+      "id": "tension-2026-0001::between::observation-2026-0001",
+      "type": "unresolved_with",
+      "source": "tension-2026-0001",
+      "target": "observation-2026-0001",
+      "status": "implicit"
+    },
+    {
+      "id": "tension-2026-0002::between::claim-2026-0002",
+      "type": "unresolved_with",
+      "source": "tension-2026-0002",
+      "target": "claim-2026-0002",
+      "status": "implicit"
+    },
+    {
+      "id": "tension-2026-0002::between::assumption-2026-0003",
+      "type": "unresolved_with",
+      "source": "tension-2026-0002",
+      "target": "assumption-2026-0003",
+      "status": "implicit"
+    },
+    {
+      "id": "tension-2026-0003::between::observation-2026-0003",
+      "type": "unresolved_with",
+      "source": "tension-2026-0003",
+      "target": "observation-2026-0003",
+      "status": "implicit"
+    },
+    {
+      "id": "tension-2026-0003::between::observation-2026-0001",
+      "type": "unresolved_with",
+      "source": "tension-2026-0003",
+      "target": "observation-2026-0001",
+      "status": "implicit"
+    },
+    {
+      "id": "tension-2026-0004::between::observation-2026-0002",
+      "type": "unresolved_with",
+      "source": "tension-2026-0004",
+      "target": "observation-2026-0002",
+      "status": "implicit"
+    },
+    {
+      "id": "tension-2026-0004::between::claim-2026-0001",
+      "type": "unresolved_with",
+      "source": "tension-2026-0004",
+      "target": "claim-2026-0001",
+      "status": "implicit"
+    }
+  ]
+}

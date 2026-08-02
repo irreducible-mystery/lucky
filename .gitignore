@@ -1,0 +1,10 @@
+# build artifacts — never canonical
+verification/lean/.lake/
+verification/typescript/node_modules/
+verification/typescript/package-lock.json
+verification/julia/Manifest.toml
+__pycache__/
+*.pyc
+
+# generated TS literals are rebuilt from field/ in CI
+verification/typescript/records.generated.ts
