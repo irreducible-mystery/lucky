@@ -21,6 +21,12 @@ capable of seeing.
 - **AI participants have no merge rights.** They may open branches, PRs, and
   comments; they may never merge, bypass rulesets, or administer the repository.
 
+> **Enforcement status:** these rules are currently policy, not mechanism —
+> branch protection is unavailable on this plan/visibility combination.
+> See `field/limits/limit-2026-0002.md` for the exact constraint and its
+> reopen conditions. Direct pushes to `main` are detectable in history and
+> constitute a governance violation even though the platform permits them.
+
 ## What approval means
 
 Approval of a PR means only:
