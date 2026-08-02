@@ -1,8 +1,12 @@
 ---
 id: observation-2026-0003
 kind: observation
-status: unconfirmed-interpretation
+status: participant-confirmed
 created: 2026-08-02
+confirmation:
+  confirmed_by: perspective-2026-0001
+  confirmed_at: "2026-08-02"
+  via: "founding PR review response in the bootstrap conversation: 'Confirmed'"
 participant:
   type: ai
   system: superninja
@@ -19,7 +23,7 @@ provenance:
 ai_assistance:
   used: true
   agents: [superninja-bootstrap]
-  participant_confirmed_interpretation: false
+  participant_confirmed_interpretation: true
 verification:
   status: checked-python
 ---
@@ -31,7 +35,7 @@ described as co-created by ChatGPT Sol 6.4 (ExtraHigh setting), containing a
 copy/paste transcript of the entire conversation, start to finish, on
 2026-08-02.
 
-This record is an AI transcription of a human statement and therefore carries
-`unconfirmed-interpretation` status until the human confirms it in the
-founding PR review. Note that this observation and `observation-2026-0001`
-are in tension: see `tension-2026-0003`.
+The human confirmed this transcription during the founding PR review
+(2026-08-02). Note that confirmation attests the *transcription is
+faithful*, not that the tension is resolved: this observation and
+`observation-2026-0001` remain in tension — see `tension-2026-0003`.

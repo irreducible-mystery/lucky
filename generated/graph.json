@@ -41,7 +41,7 @@
     {
       "id": "claim-2026-0003",
       "kind": "claim",
-      "status": "unconfirmed-interpretation",
+      "status": "participant-confirmed",
       "participant_type": "human",
       "verification": "checked-python"
     },
@@ -76,7 +76,14 @@
     {
       "id": "observation-2026-0003",
       "kind": "observation",
-      "status": "unconfirmed-interpretation",
+      "status": "participant-confirmed",
+      "participant_type": "ai",
+      "verification": "checked-python"
+    },
+    {
+      "id": "observation-2026-0004",
+      "kind": "observation",
+      "status": "asserted",
       "participant_type": "ai",
       "verification": "checked-python"
     },
@@ -192,6 +199,13 @@
       "type": "supports",
       "source": "claim-2026-0003",
       "target": "claim-2026-0002",
+      "status": "asserted"
+    },
+    {
+      "id": "relation-2026-0007",
+      "type": "applies_at_different_time",
+      "source": "observation-2026-0004",
+      "target": "limit-2026-0001",
       "status": "asserted"
     },
     {
